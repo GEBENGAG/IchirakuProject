@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ichirakuModelContainer" CdmEntityContainer="ichirakuEntities">
+    <EntitySetMapping Name="Блюда">
+      <EntityTypeMapping TypeName="ichirakuModel.Блюда">
+        <MappingFragment StoreEntitySet="Блюда">
+          <ScalarProperty Name="ИдБлюда" ColumnName="ИдБлюда" />
+          <ScalarProperty Name="Название" ColumnName="Название" />
+          <ScalarProperty Name="Состав" ColumnName="Состав" />
+          <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Заказ">
+      <EntityTypeMapping TypeName="ichirakuModel.Заказ">
+        <MappingFragment StoreEntitySet="Заказ">
+          <ScalarProperty Name="ИдЗаказа" ColumnName="ИдЗаказа" />
+          <ScalarProperty Name="ИдБлюда" ColumnName="ИдБлюда" />
+          <ScalarProperty Name="ВремяЗаказа" ColumnName="ВремяЗаказа" />
+          <ScalarProperty Name="ИдСотрудника" ColumnName="ИдСотрудника" />
+          <ScalarProperty Name="ОбщееКоличество" ColumnName="ОбщееКоличество" />
+          <ScalarProperty Name="СтатусЗаказа" ColumnName="СтатусЗаказа" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Сотрудники">
+      <EntityTypeMapping TypeName="ichirakuModel.Сотрудники">
+        <MappingFragment StoreEntitySet="Сотрудники">
+          <ScalarProperty Name="ИдСотрудника" ColumnName="ИдСотрудника" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+          <ScalarProperty Name="НомерТелефона" ColumnName="НомерТелефона" />
+          <ScalarProperty Name="ДатаРождения" ColumnName="ДатаРождения" />
+          <ScalarProperty Name="Должность" ColumnName="Должность" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="СтатусЗаказа">
+      <EntityTypeMapping TypeName="ichirakuModel.СтатусЗаказа">
+        <MappingFragment StoreEntitySet="СтатусЗаказа">
+          <ScalarProperty Name="ИдСтатусаЗаказа" ColumnName="ИдСтатусаЗаказа" />
+          <ScalarProperty Name="Название" ColumnName="Название" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

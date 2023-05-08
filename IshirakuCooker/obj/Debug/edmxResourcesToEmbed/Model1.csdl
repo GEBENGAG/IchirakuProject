@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ichirakuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Блюда">
+    <Key>
+      <PropertyRef Name="ИдБлюда" />
+    </Key>
+    <Property Name="ИдБлюда" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Состав" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Стоимость" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Заказ" Relationship="Self.FK__Заказ__ИдБлюда__2B3F6F97" FromRole="Блюда" ToRole="Заказ" />
+  </EntityType>
+  <EntityType Name="Заказ">
+    <Key>
+      <PropertyRef Name="ИдЗаказа" />
+    </Key>
+    <Property Name="ИдЗаказа" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ИдБлюда" Type="Int32" Nullable="false" />
+    <Property Name="ВремяЗаказа" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="ИдСотрудника" Type="Int32" Nullable="false" />
+    <Property Name="ОбщееКоличество" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="СтатусЗаказа" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Блюда" Relationship="Self.FK__Заказ__ИдБлюда__2B3F6F97" FromRole="Заказ" ToRole="Блюда" />
+    <NavigationProperty Name="Сотрудники" Relationship="Self.FK__Заказ__ИдОфициан__0EA330E9" FromRole="Заказ" ToRole="Сотрудники" />
+    <NavigationProperty Name="СтатусЗаказа1" Relationship="Self.FK_Заказ_СтатусЗаказа" FromRole="Заказ" ToRole="СтатусЗаказа" />
+  </EntityType>
+  <EntityType Name="Сотрудники">
+    <Key>
+      <PropertyRef Name="ИдСотрудника" />
+    </Key>
+    <Property Name="ИдСотрудника" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Пароль" Type="Int32" Nullable="false" />
+    <Property Name="НомерТелефона" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ДатаРождения" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Должность" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Заказ" Relationship="Self.FK__Заказ__ИдОфициан__0EA330E9" FromRole="Сотрудники" ToRole="Заказ" />
+  </EntityType>
+  <EntityType Name="СтатусЗаказа">
+    <Key>
+      <PropertyRef Name="ИдСтатусаЗаказа" />
+    </Key>
+    <Property Name="ИдСтатусаЗаказа" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Заказ" Relationship="Self.FK_Заказ_СтатусЗаказа" FromRole="СтатусЗаказа" ToRole="Заказ" />
+  </EntityType>
+  <Association Name="FK__Заказ__ИдБлюда__2B3F6F97">
+    <End Role="Блюда" Type="Self.Блюда" Multiplicity="1" />
+    <End Role="Заказ" Type="Self.Заказ" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Блюда">
+        <PropertyRef Name="ИдБлюда" />
+      </Principal>
+      <Dependent Role="Заказ">
+        <PropertyRef Name="ИдБлюда" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Заказ__ИдОфициан__0EA330E9">
+    <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+    <End Role="Заказ" Type="Self.Заказ" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудники">
+        <PropertyRef Name="ИдСотрудника" />
+      </Principal>
+      <Dependent Role="Заказ">
+        <PropertyRef Name="ИдСотрудника" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Заказ_СтатусЗаказа">
+    <End Role="СтатусЗаказа" Type="Self.СтатусЗаказа" Multiplicity="1" />
+    <End Role="Заказ" Type="Self.Заказ" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="СтатусЗаказа">
+        <PropertyRef Name="ИдСтатусаЗаказа" />
+      </Principal>
+      <Dependent Role="Заказ">
+        <PropertyRef Name="СтатусЗаказа" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ichirakuEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Блюда" EntityType="Self.Блюда" />
+    <EntitySet Name="Заказ" EntityType="Self.Заказ" />
+    <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
+    <EntitySet Name="СтатусЗаказа" EntityType="Self.СтатусЗаказа" />
+    <AssociationSet Name="FK__Заказ__ИдБлюда__2B3F6F97" Association="Self.FK__Заказ__ИдБлюда__2B3F6F97">
+      <End Role="Блюда" EntitySet="Блюда" />
+      <End Role="Заказ" EntitySet="Заказ" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Заказ__ИдОфициан__0EA330E9" Association="Self.FK__Заказ__ИдОфициан__0EA330E9">
+      <End Role="Сотрудники" EntitySet="Сотрудники" />
+      <End Role="Заказ" EntitySet="Заказ" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Заказ_СтатусЗаказа" Association="Self.FK_Заказ_СтатусЗаказа">
+      <End Role="СтатусЗаказа" EntitySet="СтатусЗаказа" />
+      <End Role="Заказ" EntitySet="Заказ" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
