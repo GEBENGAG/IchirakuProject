@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,20 +21,36 @@ namespace IshirakuCooker
     /// </summary>
     public partial class MainWindow : Window
     {
-        ichirakuEntities entities = new ichirakuEntities();
+        
+        static ichirakuEntities entities = new ichirakuEntities();
+        static int status = entities.СтатусЗаказа.Find(1).ИдСтатусаЗаказа;
+
         public MainWindow()
         {
+            
+            
+
+        
             InitializeComponent();
-            OrdersGrid.ItemsSource = entities.Заказ.ToList();
+            MainFrame.Content = new Authorize();
+            OrdersGrid.ItemsSource = entities.Заказ.Where(k=>k.СтатусЗаказа1.ИдСтатусаЗаказа.Equals(status)).ToList();
              
             
         }
-
         private void OrderStatusChange_Click(object sender, RoutedEventArgs e)
         {
+            
             int id = ((IshirakuCooker.Заказ)OrdersGrid.CurrentItem).ИдЗаказа;
-            entities.Заказ.Find(id).СтатусЗаказа1 = entities.СтатусЗаказа.Find(2); 
-             
+            entities.Заказ.Find(id).СтатусЗаказа1 = entities.СтатусЗаказа.Find(3);
+            entities.SaveChanges();
+            OrdersGrid.ItemsSource = entities.Заказ.Where(k=>k.СтатусЗаказа1.ИдСтатусаЗаказа.Equals(status)).ToList();
+
+        }
+
+        private void updateGrid_Click(object sender, RoutedEventArgs e)
+        {
+            OrdersGrid.ItemsSource = entities.Заказ.Where(k => k.СтатусЗаказа1.ИдСтатусаЗаказа.Equals(status)).ToList();
+
         }
     }
 }

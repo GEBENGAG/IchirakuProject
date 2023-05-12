@@ -5,24 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IshirakuCooker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Background="#212030">
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1"   AutoGenerateColumns="False" Name="OrdersGrid">
-            <DataGrid.Columns >
-                <DataGridTextColumn Width="*" Header="Заказ" Binding="{Binding Заказ.ИдЗаказа}"></DataGridTextColumn>
+        <Button x:Name="updateGrid" Content="Обновить" Click="updateGrid_Click" Height="50" Width="100"></Button>
+        <DataGrid Grid.Row="1" Background="#212030"  CanUserAddRows="False" CanUserReorderColumns="False"  AutoGenerateColumns="False" Name="OrdersGrid">
+            <DataGrid.Columns  >
+                <DataGridTextColumn  Width="*" Header="Заказ" Binding="{Binding ИдЗаказа}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Статус Заказа" Binding="{Binding СтатусЗаказа.Название}"></DataGridTextColumn>
                 
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Блюда.Название}" >
-                        
-                        </TextBlock>
-                        <Button x:Name="OrderStatusChange" Content="Приготовлено" FontSize="14" Click="OrderStatusChange_Click"></Button>
+                        <TextBlock Height="100" Margin="50,0,50,0" Text="{Binding Блюда.Название}" />
+                        <TextBlock Text="Количество:"></TextBlock>
+                        <TextBlock Height="100" Margin="50,0,50,0" Text="{Binding ОбщееКоличество}"/>
+
+
+                        <Button x:Name="OrderStatusChange" Content="Приготовлено" Background="Green" Foreground="White" Height="50"  FontSize="14" Click="OrderStatusChange_Click">
+                            
+                        </Button>
                     </StackPanel>
                     
                     
@@ -30,5 +37,7 @@
                 </DataTemplate>
                 </DataGrid.RowDetailsTemplate>
         </DataGrid>
+        <Frame Grid.RowSpan="2"  x:Name="MainFrame"></Frame>
+
     </Grid>
 </Window>
