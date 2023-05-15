@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,25 +16,18 @@ using System.Windows.Shapes;
 namespace IshirakuCooker
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Orders.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Orders : Page
     {
-        public static ichirakuEntities entities = new ichirakuEntities();
+        static ichirakuEntities entities = new ichirakuEntities();
         static int status = entities.СтатусЗаказа.Find(1).ИдСтатусаЗаказа;
 
-        public MainWindow()
+        public Orders()
         {
-          
             InitializeComponent();
-
             OrdersGrid.ItemsSource = entities.Заказ.Where(k => k.СтатусЗаказа1.ИдСтатусаЗаказа.Equals(status)).ToList();
 
-
-        }
-        public void OpenPages()
-        {
-           
         }
         private void OrderStatusChange_Click(object sender, RoutedEventArgs e)
         {
@@ -52,6 +44,5 @@ namespace IshirakuCooker
             OrdersGrid.ItemsSource = entities.Заказ.Where(k => k.СтатусЗаказа1.ИдСтатусаЗаказа.Equals(status)).ToList();
 
         }
-
     }
 }

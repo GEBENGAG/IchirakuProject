@@ -21,6 +21,6 @@ C:\Users\yugen\Documents\IshirakuCooker\IshirakuCooker\obj\Debug\IshirakuCooker.
 C:\Users\yugen\Documents\IshirakuCooker\IshirakuCooker\obj\Debug\IshirakuCooker.csproj.CopyComplete
 C:\Users\yugen\Documents\IshirakuCooker\IshirakuCooker\obj\Debug\IshirakuCooker.exe
 C:\Users\yugen\Documents\IshirakuCooker\IshirakuCooker\obj\Debug\IshirakuCooker.pdb
-C:\Users\yugen\Documents\IshirakuCooker\IshirakuCooker\obj\Debug\Authorize.g.cs
 C:\Users\yugen\Documents\IshirakuCooker\IshirakuCooker\obj\Debug\App.baml
-C:\Users\yugen\Documents\IshirakuCooker\IshirakuCooker\obj\Debug\Authorize.baml
+C:\Users\yugen\Documents\IshirakuCooker\IshirakuCooker\obj\Debug\AuthorizeWindow.g.cs
+C:\Users\yugen\Documents\IshirakuCooker\IshirakuCooker\obj\Debug\AuthorizeWindow.baml
